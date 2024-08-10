@@ -1,0 +1,147 @@
+body
+{
+margin:0;
+padding:0;
+}
+
+.header
+{
+width: 100%;
+background-color: #003049;
+height: 60px;
+margin:0;
+}
+
+h1
+{
+color: #003049;
+}
+
+.button
+{
+ padding-top: 10px;
+ height : 60px;
+ width: 120px;
+ transition: opacity 1s, box-shadow 1s;
+ border:none;
+ background-color: #003049;
+ margin-left:0;
+ margin-right: 0;
+ transition: background-color 1s;
+ color: #FCBF49;
+}
+.button:hover
+{
+ background-color: #FCBF49;
+ color: #003049;
+}
+.button:visited
+{
+ background-color:white;
+}
+
+
+
+
+
+.marquee-container 
+{
+width: 100%;
+border: 2px solid #333;
+height: 50px;
+box-sizing: border-box;
+
+}
+.char
+{
+ height: 50px;
+ padding-bottom: 10px;
+ background-color: #003049;
+ color: #FCBF49;
+ display: inline-block;
+ font-size: 30px;
+ text-align: center;
+ vertical-align: middle;
+ transition: width 1s;
+ border-radius: 2px;
+ overflow: hidden; /* Prevents content overflow */
+ white-space: nowrap; /* Keeps text in a single line */
+ line-height: 50px; /* Vertically centers the text */
+}
+.char:hover
+{
+ width: 10%;
+}
+
+
+
+
+
+
+.box1
+{
+width: 600px;
+padding: 30px;
+margin-top: 90px;
+background-color:#D62828;
+color: #EAE2B7;
+line-height: 35px;
+text-align: left;
+border-radius: 9px;
+box-shadow: 5px 5px 5px gray;
+transition: background-color 1s ,width 1s,font-size 1s;
+
+}
+.box1:hover
+{
+width: 650px;
+background-color: #F77F00;
+font-size: 140%;
+}
+
+
+
+
+
+
+
+
+
+.button11
+{
+ font-family: cursive;
+ background-color:#D9D9D9;
+ color: black;
+ font-weight: bold;
+ font-size: 13px;
+ padding-right: 10px;
+ padding-left: 10px;
+ padding-top: 10px;
+ padding-bottom: 10px;
+ margin-top:10px;
+ margin-bottom: 10px;
+ margin-right: 8px;
+ margin-left: 8px;
+ border: none;
+ border-radius: 8px;
+ transition: padding 1s ,background-color 1s, color 1s, opacity 1s, width 1s;
+ width: 50%;
+ height: 250px;
+}
+
+.button11:hover
+{
+ padding-left: 25px;
+ padding-right: 25px;
+ background-color:#253435;;
+ color: white;
+ width: 60%;
+}
+.button11:active
+{
+ background-color:#D9D9D9;
+ opacity: 0.3;
+ padding-top: 5px;
+ padding-bottom: 5px;
+ 
+}
