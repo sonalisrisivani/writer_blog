@@ -3,7 +3,11 @@ body
 margin:0;
 padding:0;
 background-color: black;
-overflow: hidden; /* Prevents scrollbars caused by particles */
+
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 .header
@@ -157,22 +161,33 @@ font-size: 140%;
 
 .partition1
 {
- background-color: white;
+ background-color: transparent;
  padding-top: 10px;
  padding-bottom: 10px;
+ margin : 20px 0;
+ border: 2px solid white;
+ border-radius: 8px;
+
 }
 
 .partition2
 {
- background-color: white;
+ background-color: transparent;
  padding-top: 10px;
  padding-bottom: 10px;
+ margin : 20px 0;
+ border: 2px solid white;
+ border-radius: 8px;
+
 }
 
 .partition3
 {
- background-color: white;
+ background-color: transparent;
  padding-top: 10px;
  padding-bottom: 10px;
+ margin : 20px 0;
+ border: 2px solid white;
+ border-radius: 8px;
 }
 

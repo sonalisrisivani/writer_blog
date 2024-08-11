@@ -6,6 +6,7 @@
 <title>Blog </title>
 <link rel="stylesheet" href="style.css">
 
+<!-- Firebase SDK -->
 <script src="https://www.gstatic.com/firebasejs/9.1.0/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.1.0/firebase-firestore.js"></script>
 
@@ -13,19 +14,15 @@
 
 <body >
 
-
+<!-- Header and Navigation -->
 <div class="header"> 
 <nav> 
-<a href="student.html"><button class="button"> Charecter Profile </button></a>
-<a href="student1.html"><button class="button"> Comics </button></a>
-<a href="student1.html"><button class="button"> Posters </button></a>
+<a href="#charecter-profile"><button class="button"> Charecter Profile </button></a>
+<a href="#comics"><button class="button"> Comics </button></a>
+<a href="#poster"><button class="button"> Posters </button></a>
 </nav>
 
-<marquee behavior="scroll" direction="right" scrollamount="10" class="marquee-container"> 
-<div class="char">sonali</div>
-<div class="char">sri</div>
-<div class="char">sonali</div>
-</marquee>
+
 <br>
 </div>
 
@@ -34,7 +31,8 @@
 
 <center>
 
-<div class="partition1">
+<div class="partition1"  id="character-profile">
+<h1> Charecters </h1>
 <br>
 
 <div class="box1">
@@ -49,10 +47,11 @@ Weight:<br>
 
 <br>
 </div>
-<br>
 
 
-<div class="partition2">
+
+<div class="partition2" id="comics">
+<h1>Comics </h1>
 <br>
 <div class="button11">
 posters here
@@ -60,6 +59,16 @@ posters here
 <br>
 </div>
 
+
+<div id="posters" class="partition3">
+<h1> Posters </h1>
+<br>
+<div class="box1">
+<center><h4>Posters</h4></center>
+<p>Posters content goes here.</p>
+</div>
+<br>
+</div>
 
 </center>
 
