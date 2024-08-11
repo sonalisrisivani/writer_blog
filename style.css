@@ -2,6 +2,8 @@ body
 {
 margin:0;
 padding:0;
+background-color: black;
+overflow: hidden; /* Prevents scrollbars caused by particles */
 }
 
 .header
@@ -16,6 +18,10 @@ h1
 {
 color: #003049;
 }
+
+
+
+
 
 .button
 {
@@ -145,3 +151,28 @@ font-size: 140%;
  padding-bottom: 5px;
  
 }
+
+
+
+
+.partition1
+{
+ background-color: white;
+ padding-top: 10px;
+ padding-bottom: 10px;
+}
+
+.partition2
+{
+ background-color: white;
+ padding-top: 10px;
+ padding-bottom: 10px;
+}
+
+.partition3
+{
+ background-color: white;
+ padding-top: 10px;
+ padding-bottom: 10px;
+}
+
