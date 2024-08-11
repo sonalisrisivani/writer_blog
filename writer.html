@@ -1,66 +1,71 @@
 <html>
 <head>
-    <title>Site to Enter Data</title>
+
+<title>Site to Enter Data</title>
+<!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/9.1.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.1.0/firebase-firestore.js"></script>
+
 </head>
 <body>
-    <h1>Welcome to Host!</h1>
-    <br>
-    <hr>
-    <h2>You can enter: character profiles, any comic or poster, blog</h2>
-    <hr>
+<h1>Welcome to Host!</h1>
+<br>
+<hr>
+<h2>You can enter: character profiles, any comic or poster, blog</h2>
+<hr>
 
-    <h2>Enter Character Profile</h2>
-    <form method="post" action="">
-        <label>Enter character name</label><br>
-        <input type="text" name="ch_name"><br>
+<h2>Enter Character Profile</h2>
+<form method="post" action="">
+<label>Enter character name</label><br>
+<input type="text" name="ch_name"><br>
 
-        <label>Enter character image URL</label><br>
-        <input type="text" name="ch_image"><br>
+<label>Enter character image URL</label><br>
+<input type="text" name="ch_image"><br>
 
-        <label>Enter attribute name (e.g., hobbies, gender)</label><br>
-        <input type="text" name="ch_attribute_name"><br>
+<label>Enter attribute name (e.g., hobbies, gender)</label><br>
+<input type="text" name="ch_attribute_name"><br>
 
-        <label>Enter attribute value</label><br>
-        <input type="text" name="ch_attribute_value"><br>
+<label>Enter attribute value</label><br>
+<input type="text" name="ch_attribute_value"><br>
 
-        <input type="submit" value="Submit">
-    </form>
-    <hr>
+<input type="submit" value="Submit">
+</form>
+<hr>
 
-    <h2>Enter Comic: Title and Image</h2>
-    <form method="post" action="">
-        <label>Enter comic title</label><br>
-        <input type="text" name="comic_title"><br>
+<h2>Enter Comic: Title and Image</h2>
+<form method="post" action="">
+<label>Enter comic title</label><br>
+<input type="text" name="comic_title"><br>
 
-        <label>Enter comic description</label><br>
-        <input type="text" name="comic_description"><br>
+<label>Enter comic description</label><br>
+<input type="text" name="comic_description"><br>
 
-        <label>Enter comic image URL</label><br>
-        <input type="text" name="comic_image"><br>
+<label>Enter comic image URL</label><br>
+<input type="text" name="comic_image"><br>
 
-        <input type="submit" value="Submit">
-    </form>
-    <hr>
+<input type="submit" value="Submit">
+</form>
+<hr>
 
-    <h2>Upload a Blog: Title and Text</h2>
-    <form method="post" action="">
-        <label>Enter blog title</label><br>
-        <input type="text" name="blog_title"><br>
+<h2>Upload a Blog: Title and Text</h2>
+<form method="post" action="">
+<label>Enter blog title</label><br>
+<input type="text" name="blog_title"><br>
   
-        <label>Enter blog description</label><br>
-        <textarea name="blog_description"></textarea><br>
+<label>Enter blog description</label><br>
+<textarea name="blog_description"></textarea><br>
 
-        <label>Enter blog imageURL</label><br>
-        <textarea name="blog_image"></textarea><br>
+<label>Enter blog imageURL</label><br>
+<textarea name="blog_image"></textarea><br>
 
 
 
-        <label>Enter blog content</label><br>
-        <textarea name="blog_content"></textarea><br>
+<label>Enter blog content</label><br>
+<textarea name="blog_content"></textarea><br>
 
-        <input type="submit" value="Submit">
-    </form>
-    <hr>
+<input type="submit" value="Submit">
+</form>
+<hr>
 
 
 
