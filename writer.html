@@ -1,10 +1,11 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
 
 <title>Site to Enter Data</title>
-<!-- Firebase SDK -->
-<script src="https://www.gstatic.com/firebasejs/9.1.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.1.0/firebase-firestore.js"></script>
+
+<script type="text/javascript/module" src="writer.js"></script>
+
 
 </head>
 <body>
@@ -14,54 +15,72 @@
 <h2>You can enter: character profiles, any comic or poster, blog</h2>
 <hr>
 
+
+
+
 <h2>Enter Character Profile</h2>
-<form method="post" action="">
-<label>Enter character name</label><br>
-<input type="text" name="ch_name"><br>
+<form method="post" action="" name="charecter_profile"  id="characterProfileForm">
+<label for="ch_name">Enter character name</label><br>
+<input type="text" name="ch_name"  id="ch_name"><br>
 
-<label>Enter character image URL</label><br>
-<input type="text" name="ch_image"><br>
+<label for="ch_image">Enter character image URL</label><br>
+<input type="text" name="ch_image"  id="ch_image"><br>
 
-<label>Enter attribute name (e.g., hobbies, gender)</label><br>
-<input type="text" name="ch_attribute_name"><br>
+<div id="attributesContainer">
+<div class="attribute-container">
+<label for="ch_attribute_name">Enter attribute name (e.g., hobbies, gender)</label><br>
+<input type="text" name="ch_attribute_name"  id="ch_attribute_name"><br>
 
-<label>Enter attribute value</label><br>
-<input type="text" name="ch_attribute_value"><br>
+<label for="ch_attribute_value">Enter attribute value</label><br>
+<input type="text" name="ch_attribute_value" id="ch_attribute_value"><br>
+</div>
+</div>
 
+<button type="button" onclick="addAttribute()">Add Another Attribute</button><br><br>
 <input type="submit" value="Submit">
 </form>
 <hr>
+
+
+
+
+
+
 
 <h2>Enter Comic: Title and Image</h2>
-<form method="post" action="">
-<label>Enter comic title</label><br>
-<input type="text" name="comic_title"><br>
+<form method="post" action="" name="comic">
+<label for="comic_title">Enter comic title</label><br>
+<input type="text" name="comic_title" id="comic_title"><br>
 
-<label>Enter comic description</label><br>
-<input type="text" name="comic_description"><br>
+<label for="comic_description">Enter comic description</label><br>
+<input type="text" name="comic_description" id="comic_description"><br>
 
-<label>Enter comic image URL</label><br>
-<input type="text" name="comic_image"><br>
+<label for="comic_image">Enter comic image URL</label><br>
+<input type="text" name="comic_image" id="comic_image"><br>
 
 <input type="submit" value="Submit">
 </form>
 <hr>
 
+
+
+
+
+
+
 <h2>Upload a Blog: Title and Text</h2>
-<form method="post" action="">
-<label>Enter blog title</label><br>
-<input type="text" name="blog_title"><br>
+<form method="post" action="" name="blog">
+<label for="blog_title">Enter blog title</label><br>
+<input type="text" name="blog_title" id="blog_title"><br>
   
-<label>Enter blog description</label><br>
-<textarea name="blog_description"></textarea><br>
+<label for="blog_description">Enter blog description</label><br>
+<textarea name="blog_description" id="blog_description"></textarea><br>
 
-<label>Enter blog imageURL</label><br>
-<textarea name="blog_image"></textarea><br>
+<label for="blog_image">Enter blog imageURL</label><br>
+<textarea name="blog_image" id="blog_image"></textarea><br>
 
-
-
-<label>Enter blog content</label><br>
-<textarea name="blog_content"></textarea><br>
+<label for="blog_content">Enter blog content</label><br>
+<textarea name="blog_content" id="blog_content"></textarea><br>
 
 <input type="submit" value="Submit">
 </form>
@@ -75,6 +94,28 @@
 <hr>
 <h2> Delete already existing Data </h2>
 <hr>
+
+
+
+
+
+<script>
+function addAttribute()
+{
+ const attributesContainer = document.getElementById('attributesContainer');
+ const attributeDiv = document.createElement('div');
+ attributeDiv.className = 'attribute-container';
+ attributeDiv.innerHTML = `
+ <label>Enter attribute name (e.g., hobbies, gender)</label><br>
+ <input type="text" name="ch_attribute_name[]"><br>
+
+ <label>Enter attribute value</label><br>
+ <input type="text" name="ch_attribute_value[]"><br>
+  `;
+ attributesContainer.appendChild(attributeDiv);
+}
+</script>
+
 
 </body>
 </html>
