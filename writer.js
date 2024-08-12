@@ -1,8 +1,6 @@
 <!-- Firebase SDK -->
-<script src="https://www.gstatic.com/firebasejs/9.1.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.1.0/firebase-firestore.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.1.0/firebase-analytics.js"></script>
-<!-- Include other Firebase SDKs as needed -->
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.0/firebase-app.js";
+import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/9.1.0/firebase-firestore.js";
 
 
 
@@ -22,13 +20,13 @@ const firebaseConfig = {
 
 
 //Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-var firestore = firebase.firestore();
+const app = initializeApp(firebaseConfig);
+const firestore = getFirestore(app);
 
 //Variable to access database collection
-const db_ch = firestore.collection("CharecterProfile");
-const db_co = firestore.collection("Comics");
-const db_bl = firestore.collection("Blogs");
+const db_ch = collection(firestore,"CharecterProfile");
+const db_co = collection(firestore,"Comics");
+const db_bl = collection(firestore,"Blogs");
 
 
 
@@ -52,14 +50,19 @@ document.addEventListener('DOMContentLoaded', () =>
  document.forms['charecter_profile'].addEventListener('submit',async(event)=> 
  {
   event.preventDefault();
-  const ch_name = event.target.ch_name.value;
-  const ch_image = event.target.ch_image.value;
-  const ch_attribute_name = event.target.ch_attribute_name.value;
-  const ch_attribute_value = event.target.ch_attribute_value.value;
+  const ch_name = document.getElementById('ch_name').value;
+  const ch_image = document.getElementById('ch_image').value;
+  const ch_attribute_name = document.getElementById('ch_attribute_name').value;
+  const ch_attribute_value = document.getElementById('ch_attribute_value').value;
+
+  console.log('Character Name:', ch_name);
+  console.log('Character Image URL:', ch_image);
+  console.log('Attribute Name:', ch_attribute_name);
+  console.log('Attribute Value:', ch_attribute_value);
 
   try
   {
-   await db_ch.add(
+   await addDoc(db_ch,
    {
     ch_name:ch_name,
     ch_image_url: ch_image,
@@ -97,7 +100,7 @@ document.addEventListener('DOMContentLoaded', () =>
 
   try
   {
-   await db_co.add(
+   await addDoc(db_co,
    { 
     title: comic_title,
     description: comic_description,
@@ -133,7 +136,7 @@ document.addEventListener('DOMContentLoaded', () =>
 
   try
   {
-   await db_bl.add(
+   await addDoc(db_bl,
    { 
     title: blog_title,
     description: blog_description,
