@@ -5,9 +5,6 @@
 <!-- Include other Firebase SDKs as needed -->
 
 
-import { initializeApp } from "firebase/app";
-import { getFirestore, collection, addDoc } from "firebase/firestore";
-import { getAnalytics } from "firebase/analytics";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -20,14 +17,18 @@ const firebaseConfig = {
   measurementId: "G-9JWSKQKSVG"
 };
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
-const db = getFirestore(app);
 
 
 
 
+//Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+var firestore = firebase.firestore();
+
+//Variable to access database collection
+const db_ch = firestore.collection("CharecterProfile");
+const db_co = firestore.collection("Comics");
+const db_bl = firestore.collection("Blogs");
 
 
 
@@ -58,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () =>
 
   try
   {
-   await addDoc(collection(db, 'CharecterProfile'),
+   await db_ch.add(
    {
     ch_name:ch_name,
     ch_image_url: ch_image,
@@ -96,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () =>
 
   try
   {
-   await addDoc(collection(db, 'Comics'),
+   await db_co.add(
    { 
     title: comic_title,
     description: comic_description,
@@ -132,7 +133,7 @@ document.addEventListener('DOMContentLoaded', () =>
 
   try
   {
-   await addDoc(collection(db, 'Blogs'),
+   await db_bl.add(
    { 
     title: blog_title,
     description: blog_description,
