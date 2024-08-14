@@ -21,60 +21,121 @@
 <a href="#comics"><button class="button"> Comics </button></a>
 <a href="#poster"><button class="button"> Posters </button></a>
 </nav>
-
-
 <br>
 </div>
 
+ <center>
+    <div class="partition1" id="character-profile">
+      <h1>Characters</h1>
+      <br>
+      <!-- Characters will be dynamically inserted here -->
+    </div>
+
+    <div class="partition2" id="comics">
+      <h1>Comics</h1>
+      <br>
+      <!-- Comics will be dynamically inserted here -->
+    </div>
+
+    <div id="posters" class="partition3">
+      <h1>Posters</h1>
+      <br>
+      <!-- Blogs will be dynamically inserted here -->
+    </div>
+  </center>
 
 
+<script type="module">
 
-<center>
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.0/firebase-app.js";
+import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/9.1.0/firebase-firestore.js";
 
-<div class="partition1"  id="character-profile">
-<h1> Charecters </h1>
-<br>
-
-<div class="box1">
-
-<center> <h4> Charecter Name </h4> </center>
-Age:<br>
-Hobbies:<br>
-Charecterstics:<br>
-Height:<br>
-Weight:<br>
-</div>
-
-<br>
-</div>
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyDLpOAcZx919tFHTzN3R9a3a-aRhOiG6RI",
+  authDomain: "writer-blog-21.firebaseapp.com",
+  projectId: "writer-blog-21",
+  storageBucket: "writer-blog-21.appspot.com",
+  messagingSenderId: "986595186275",
+  appId: "1:986595186275:web:a20f3e931330e48f458a56",
+  measurementId: "G-9JWSKQKSVG"
+};
 
 
+//Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const firestore = getFirestore(app);
 
-<div class="partition2" id="comics">
-<h1>Comics </h1>
-<br>
-<div class="button11">
-posters here
-</div>
-<br>
-</div>
+//Variable to access database collection
+const db_ch = collection(firestore,"CharecterProfile");
+const db_co = collection(firestore,"Comics");
+const db_bl = collection(firestore,"Blogs");
+
+ // Fetch and display data
+    document.addEventListener('DOMContentLoaded', async () => {
+      try {
+        // Fetch and display Character Profiles
+        const characterProfilesSnapshot = await getDocs(db_ch);
+        const characterContainer = document.getElementById('character-profile');
+        characterProfilesSnapshot.forEach(doc => {
+          const data = doc.data();
+          const profileElement = document.createElement('div');
+          profileElement.innerHTML = `
+            <h4>${data.ch_name}</h4>
+            <p>Age: ${data.age || 'N/A'}</p>
+            <p>Hobbies: ${data.hobbies || 'N/A'}</p>
+            <p>Characteristics: ${data.attributes || 'N/A'}</p>
+            <p>Height: ${data.height || 'N/A'}</p>
+            <p>Weight: ${data.weight || 'N/A'}</p>
+            <img src="${data.ch_image_url || ''}" alt="${data.ch_name}" style="max-width: 200px;"/>
+            <hr>
+          `;
+          characterContainer.appendChild(profileElement);
+        });
+
+  // Fetch and display Comics
+        const comicsSnapshot = await getDocs(db_co);
+        const comicsContainer = document.getElementById('comics');
+        comicsSnapshot.forEach(doc => {
+          const data = doc.data();
+          const comicElement = document.createElement('div');
+          comicElement.innerHTML = `
+            <h4>${data.title}</h4>
+            <p>Description: ${data.description || 'N/A'}</p>
+            <img src="${data.image || ''}" alt="${data.title}" style="max-width: 200px;"/>
+            <hr>
+          `;
+          comicsContainer.appendChild(comicElement);
+        });
 
 
-<div id="posters" class="partition3">
-<h1> Posters </h1>
-<br>
-<div class="box1">
-<center><h4>Posters</h4></center>
-<p>Posters content goes here.</p>
-</div>
-<br>
-</div>
+// Fetch and display Blogs
+        const blogsSnapshot = await getDocs(db_bl);
+        const blogsContainer = document.getElementById('posters');
+        blogsSnapshot.forEach(doc => {
+          const data = doc.data();
+          const blogElement = document.createElement('div');
+          blogElement.innerHTML = `
+            <h4>${data.title}</h4>
+            <p>Description: ${data.description || 'N/A'}</p>
+            <p>Content: ${data.content || 'N/A'}</p>
+            <img src="${data.image || ''}" alt="${data.title}" style="max-width: 200px;"/>
+            <hr>
+          `;
+          blogsContainer.appendChild(blogElement);
+        });
 
-</center>
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    });
+
+</script>
+
+
 
 
 </body>
-
 
 <footer>
 <a href="writer.html">click here to upload enter pw - to authenticate if its writer </a>
