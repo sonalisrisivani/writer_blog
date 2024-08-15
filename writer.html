@@ -91,6 +91,11 @@
 <h2> Edit already existing Data </h2>
 <hr>
 <h2> Delete already existing Data </h2>
+<form id="deleteCharacterForm">
+    <label for="deleteCharacterName">Enter character name to delete:</label><br>
+    <input type="text" id="deleteCharacterName" required><br>
+    <input type="submit" value="Delete">
+  </form>
 <hr>
 
 
@@ -126,7 +131,7 @@ function addAttribute()
 
 //Firebase SDK 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.0/firebase-app.js";
-import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/9.1.0/firebase-firestore.js";
+import { getFirestore, collection, addDoc, deleteDoc, query, where, getDocs } from "https://www.gstatic.com/firebasejs/9.1.0/firebase-firestore.js";
 
 
 
@@ -286,8 +291,40 @@ document.addEventListener('DOMContentLoaded', () =>
 
 
 
-});
+document.forms['deleteCharacterForm'].addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const characterName = event.target.deleteCharacterName.value;
 
+            try {
+                // Query to find the document with the given character name
+                const q = query(db_ch, where("ch_name", "==", characterName));
+                const querySnapshot = await getDocs(q);
+
+                if (querySnapshot.empty) {
+                    alert('Character not found!');
+                    return;
+                }
+
+                // Deleting all matching documents
+                const deletionPromises = [];
+                querySnapshot.forEach((doc) => {
+                    deletionPromises.push(deleteDoc(doc.ref));
+                });
+
+                await Promise.all(deletionPromises);
+
+                alert('Character profile deleted successfully!');
+                event.target.reset();
+            } catch (error) {
+                alert('Error: ' + error.message);
+            }
+        });
+
+
+
+
+
+ });
 </script>
 
 
