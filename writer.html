@@ -97,8 +97,18 @@
     <input type="submit" value="Delete">
   </form>
 <hr>
-
-
+<form id="deleteComicForm">
+        <label for="deleteComicTitle">Enter comic title to delete:</label><br>
+        <input type="text" id="deleteComicTitle" required><br>
+        <input type="submit" value="Delete">
+  </form>
+<hr>
+<form id="deleteBlogForm">
+        <label for="deleteBlogTitle">Enter blog title to delete:</label><br>
+        <input type="text" id="deleteBlogTitle" required><br>
+        <input type="submit" value="Delete">
+  </form>
+<hr>
 
 
 
@@ -291,6 +301,27 @@ document.addEventListener('DOMContentLoaded', () =>
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// delete char profile with cahr name
 document.forms['deleteCharacterForm'].addEventListener('submit', async (event) => {
             event.preventDefault();
             const characterName = event.target.deleteCharacterName.value;
@@ -319,6 +350,64 @@ document.forms['deleteCharacterForm'].addEventListener('submit', async (event) =
                 alert('Error: ' + error.message);
             }
         });
+
+
+//delte 
+// Handle delete comic form
+            document.forms['deleteComicForm'].addEventListener('submit', async (event) => {
+                event.preventDefault();
+                const comicTitle = event.target.deleteComicTitle.value;
+
+                try {
+                    const q = query(db_co, where("title", "==", comicTitle));
+                    const querySnapshot = await getDocs(q);
+
+                    if (querySnapshot.empty) {
+                        alert('Comic not found!');
+                        return;
+                    }
+
+                    const deletionPromises = [];
+                    querySnapshot.forEach((doc) => {
+                        deletionPromises.push(deleteDoc(doc.ref));
+                    });
+
+                    await Promise.all(deletionPromises);
+
+                    alert('Comic deleted successfully!');
+                    event.target.reset();
+                } catch (error) {
+                    alert('Error: ' + error.message);
+                }
+            });
+
+            // Handle delete blog form
+            document.forms['deleteBlogForm'].addEventListener('submit', async (event) => {
+                event.preventDefault();
+                const blogTitle = event.target.deleteBlogTitle.value;
+
+                try {
+                    const q = query(db_bl, where("title", "==", blogTitle));
+                    const querySnapshot = await getDocs(q);
+
+                    if (querySnapshot.empty) {
+                        alert('Blog not found!');
+                        return;
+                    }
+
+                    const deletionPromises = [];
+                    querySnapshot.forEach((doc) => {
+                        deletionPromises.push(deleteDoc(doc.ref));
+                    });
+
+                    await Promise.all(deletionPromises);
+
+                    alert('Blog deleted successfully!');
+                    event.target.reset();
+                } catch (error) {
+                    alert('Error: ' + error.message);
+                }
+            });
 
 
 
