@@ -2,7 +2,9 @@ body
 {
 margin:0;
 padding:0;
-background-color: green;
+background-color: black;
+color: white;
+padding-top: 80px;
 
 }
 
@@ -12,15 +14,19 @@ html {
 
 .header
 {
+position: fixed; /* Fixes the header at the top of the viewport */
 width: 100%;
-background-color: #003049;
+top: 0; /* Positions it at the very top */
+z-index: 1000; /* Ensures the header is above other content */
+padding: 0px 0; /* Padding for spacing */
+background-color: #ADB5BD;
 height: 60px;
 margin:0;
 }
 
 h1
 {
-color: #003049;
+color: #212529;
 }
 
 
@@ -34,16 +40,17 @@ color: #003049;
  width: 120px;
  transition: opacity 1s, box-shadow 1s;
  border:none;
- background-color: #003049;
+ background-color: #ADB5BD;
  margin-left:0;
  margin-right: 0;
  transition: background-color 1s;
- color: #FCBF49;
+ color: black;
+ cursor: pointer; /* Cursor style for hover effect */
 }
 .button:hover
 {
- background-color: #FCBF49;
- color: #003049;
+ background-color: #6C757D;
+ color: white;
 }
 .button:visited
 {
@@ -82,6 +89,57 @@ box-sizing: border-box;
 {
  width: 10%;
 }
+/* CSS for character profile boxes */
+.profile-box {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  margin: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #343A40;
+  max-width: 250px; /* Adjust width as needed */
+  display: inline-block; /* Allows multiple boxes to align */
+  vertical-align: top;
+  text-align: left; 
+  width: 150px;
+  height: 160px;
+  transition: padding 1s, margin 1s , opacity 1s, height 1s, width 1s;
+  cursor: pointer;
+}
+
+.profile-box h4 {
+  margin-top: 0;
+  margin-bottom: 8px;
+}
+
+.profile-box img {
+  margin-bottom: 8px;
+  border-radius: 4px;
+}
+
+.profile-box ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.profile-box li {
+  text-align: left; /* Align the list items to the left */
+}
+
+.profile-box:hover{
+ padding: 20px;
+ margin: 20px;
+ margin: 25px;
+ height: 180px;
+ width: 180px;
+ 
+}
+
+.profile-box:active{
+ opacity: 0.5;
+}
+
 
 
 
@@ -90,23 +148,24 @@ box-sizing: border-box;
 
 .box1
 {
-width: 600px;
+width: 550px;
 padding: 30px;
 margin-top: 90px;
-background-color:#D62828;
-color: #EAE2B7;
+background-color: #343A40;
+color: white;
 line-height: 35px;
 text-align: left;
 border-radius: 9px;
 box-shadow: 5px 5px 5px gray;
-transition: background-color 1s ,width 1s,font-size 1s;
+transition: background-color 1s ,width 1s,font-size 1s, color 1s;
 
 }
 .box1:hover
 {
-width: 650px;
-background-color: #F77F00;
+width: 570px;
+background-color: white;;
 font-size: 140%;
+color: black;
 }
 
 
@@ -117,77 +176,89 @@ font-size: 140%;
 
 
 
-.button11
-{
- font-family: cursive;
- background-color:#D9D9D9;
- color: black;
- font-weight: bold;
- font-size: 13px;
- padding-right: 10px;
- padding-left: 10px;
- padding-top: 10px;
- padding-bottom: 10px;
- margin-top:10px;
- margin-bottom: 10px;
- margin-right: 8px;
- margin-left: 8px;
- border: none;
- border-radius: 8px;
- transition: padding 1s ,background-color 1s, color 1s, opacity 1s, width 1s;
- width: 50%;
- height: 250px;
+
+
+
+
+.button11 {
+  font-family: cursive;
+  background-color: #D9D9D9;
+  color: black;
+  font-weight: bold;
+  font-size: 13px;
+  padding: 25px;
+  margin: 10px;
+  border: none;
+  border-radius: 8px;
+  transition: padding 1s, background-color 1s, color 1s, opacity 1s, width 1s,height 1s;
+  width: 500px;
+  height: 250px;
+  display: flex;
+  flex-direction: column; 
+  text-align: left ;
+  display: inline-block; 
 }
 
-.button11:hover
-{
- padding-left: 25px;
- padding-right: 25px;
- background-color:#253435;;
- color: white;
- width: 60%;
+.button11 img {
+  max-width: 100%;
+  height: auto;
+  max-height: 150px; /* Limit image height to maintain uniformity */
 }
-.button11:active
-{
- background-color:#D9D9D9;
- opacity: 0.3;
- padding-top: 5px;
- padding-bottom: 5px;
- 
+
+.button11:hover {
+  padding-left: 11px;
+  padding-right: 11px;
+  background-color: #253435;
+  color: white;
+  width: 530px;
+  height: 280px;
 }
+
+.button11:active {
+  background-color: #D9D9D9;
+  opacity: 0.3;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+
+
+
 
 
 
 
 .partition1
 {
- background-color: transparent;
+ background-color: #6C757D;
  padding-top: 10px;
  padding-bottom: 10px;
  margin : 20px 0;
  border: 2px solid white;
  border-radius: 8px;
+ width: 700px;
 
 }
 
 .partition2
 {
- background-color: transparent;
+ background-color: #6C757D;
  padding-top: 10px;
  padding-bottom: 10px;
  margin : 20px 0;
  border: 2px solid white;
  border-radius: 8px;
-
+ width: 700px;
 }
 
 .partition3
 {
- background-color: transparent;
+ background-color: #6C757D;
  padding-top: 10px;
  padding-bottom: 10px;
  margin : 20px 0;
  border: 2px solid white;
  border-radius: 8px;
+ width: 700px;
 }
 

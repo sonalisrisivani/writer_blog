@@ -17,9 +17,9 @@
 <!-- Header and Navigation -->
 <div class="header"> 
 <nav> 
-<a href="#charecter-profile"><button class="button"> Charecter Profile </button></a>
+<a href="#character-profile"><button class="button"> Charecter Profile </button></a>
 <a href="#comics"><button class="button"> Comics </button></a>
-<a href="#poster"><button class="button"> Posters </button></a>
+<a href="#blogs"><button class="button"> Blogs </button></a>
 </nav>
 <br>
 </div>
@@ -37,8 +37,8 @@
       <!-- Comics will be dynamically inserted here -->
     </div>
 
-    <div id="posters" class="partition3">
-      <h1>Posters</h1>
+    <div id="blogs" class="partition3">
+      <h1>Blogs</h1>
       <br>
       <!-- Blogs will be dynamically inserted here -->
     </div>
@@ -74,24 +74,55 @@ const db_bl = collection(firestore,"Blogs");
  // Fetch and display data
     document.addEventListener('DOMContentLoaded', async () => {
       try {
+
+
+
+
+
+
         // Fetch and display Character Profiles
-        const characterProfilesSnapshot = await getDocs(db_ch);
-        const characterContainer = document.getElementById('character-profile');
-        characterProfilesSnapshot.forEach(doc => {
-          const data = doc.data();
-          const profileElement = document.createElement('div');
-          profileElement.innerHTML = `
-            <h4>${data.ch_name}</h4>
-            <p>Age: ${data.age || 'N/A'}</p>
-            <p>Hobbies: ${data.hobbies || 'N/A'}</p>
-            <p>Characteristics: ${data.attributes || 'N/A'}</p>
-            <p>Height: ${data.height || 'N/A'}</p>
-            <p>Weight: ${data.weight || 'N/A'}</p>
-            <img src="${data.ch_image_url || ''}" alt="${data.ch_name}" style="max-width: 200px;"/>
-            <hr>
-          `;
-          characterContainer.appendChild(profileElement);
-        });
+const characterProfilesSnapshot = await getDocs(db_ch);
+const characterContainer = document.getElementById('character-profile');
+
+characterProfilesSnapshot.forEach(doc => {
+  const data = doc.data();
+  const profileElement = document.createElement('div');
+
+  // Add class to profile element for CSS
+  profileElement.classList.add('profile-box');
+
+  // Display name and image initially
+  let profileContent = `<h4>${data.ch_name}</h4>`;
+  if (data.ch_image_url) {
+    profileContent += `<img src="${data.ch_image_url}" alt="${data.ch_name}" style="max-width: 200px;"/>`;
+  }
+
+  // Create a div for additional details, initially hidden
+  const detailsElement = document.createElement('div');
+  detailsElement.classList.add('details');
+
+  // Build the full details
+  let detailsContent = '';
+  if (data.attributes && Object.keys(data.attributes).length > 0) {
+    detailsContent += `<p>Characteristics:</p><ul>`;
+    for (const [key, value] of Object.entries(data.attributes)) {
+      detailsContent += `<li><strong>${key}:</strong> ${value}</li>`;
+    }
+    detailsContent += `</ul>`;
+  }
+  detailsContent += `<hr>`;
+  detailsElement.innerHTML = detailsContent;
+
+  // Append the details to the profile element
+  profileElement.innerHTML = profileContent;
+  profileElement.appendChild(detailsElement);
+  characterContainer.appendChild(profileElement);
+});
+
+
+
+
+
 
   // Fetch and display Comics
         const comicsSnapshot = await getDocs(db_co);
@@ -99,29 +130,49 @@ const db_bl = collection(firestore,"Blogs");
         comicsSnapshot.forEach(doc => {
           const data = doc.data();
           const comicElement = document.createElement('div');
-          comicElement.innerHTML = `
-            <h4>${data.title}</h4>
-            <p>Description: ${data.description || 'N/A'}</p>
-            <img src="${data.image || ''}" alt="${data.title}" style="max-width: 200px;"/>
-            <hr>
-          `;
+          comicElement.className = 'button11'; // Adjust styling if needed
+
+          // Build comic content dynamically based on available data
+          let comicContent = '';
+
+          if (data.title) comicContent += `<h4>${data.title}</h4>`;
+          if (data.description) comicContent += `<p>Description: ${data.description}</p>`;
+          if (data.image) comicContent += `<img src="${data.image}" alt="${data.title}" style="max-width: 200px;"/>`;
+
+          //if (comicContent === '') {
+          //  comicContent = '<p>No comic data available.</p>';
+          //}
+
+          comicElement.innerHTML = comicContent + `<hr>`;
           comicsContainer.appendChild(comicElement);
         });
 
 
-// Fetch and display Blogs
+
+
+
+
+              // Fetch and display Blogs
         const blogsSnapshot = await getDocs(db_bl);
-        const blogsContainer = document.getElementById('posters');
+        const blogsContainer = document.getElementById('blogs');
         blogsSnapshot.forEach(doc => {
           const data = doc.data();
           const blogElement = document.createElement('div');
-          blogElement.innerHTML = `
-            <h4>${data.title}</h4>
-            <p>Description: ${data.description || 'N/A'}</p>
-            <p>Content: ${data.content || 'N/A'}</p>
-            <img src="${data.image || ''}" alt="${data.title}" style="max-width: 200px;"/>
-            <hr>
-          `;
+          blogElement.className = 'box1'; // Add class for styling
+
+          // Build blog content dynamically based on available data
+          let blogContent = '';
+
+          if (data.title) blogContent += `<center><h4>${data.title}</h4></center>`;
+          if (data.description) blogContent += `<p>Description: ${data.description}</p>`;
+          if (data.content) blogContent += `<p>Content: ${data.content}</p>`;
+          if (data.image) blogContent += `<img src="${data.image}" alt="${data.title}" style="max-width: 200px;"/>`;
+
+          if (blogContent === '') {
+            blogContent = '<p>No blog data available.</p>';
+          }
+
+          blogElement.innerHTML = blogContent + `<hr>`;
           blogsContainer.appendChild(blogElement);
         });
 
